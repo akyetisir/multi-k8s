@@ -18,3 +18,15 @@ after_success:
   - docker push akyetisir/multi-nginx
   - docker push akyetisir/multi-server
   - docker push akyetisir/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "multi-docker"
+  env: "Multi-docker-env-2"
+  bucket_name: "elasticbeanstalk-eu-north-1-908027404190"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
